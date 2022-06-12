@@ -119,7 +119,7 @@ defmodule Personnummer do
       |> Integer.to_string()
       |> String.pad_leading(3, "0")
 
-    pnr.serial > 0 && luhn_checksum("#{short_date}#{serial}") == pnr.control
+    pnr.serial > 0 && luhn("#{short_date}#{serial}") == pnr.control
   end
 
   @doc """
@@ -263,38 +263,36 @@ defmodule Personnummer do
     |> elem(0)
   end
 
-  defp luhn_checksum(digits) do
-    (10 -
-       (digits
-        |> String.split("", trim: true)
-        |> Enum.map(&String.to_integer/1)
-        |> Enum.with_index()
-        |> List.foldl(0, fn {digit, i}, acc -> acc + digit_to_add(i, digit) end)
-        |> rem(10)))
-    |> checksum
+  @doc """
+  Calculate luhn checksum according to spec
+  https://en.wikipedia.org/wiki/Luhn_algorithm.
+
+  ## Examples
+
+      iex> Personnummer.luhn("900101001")
+      7
+  """
+  def luhn(digits) do
+    10 - rem(luhn_sum(digits), 10)
   end
 
-  defp checksum(c) do
-    case c do
-      10 -> 0
-      _ -> c
-    end
+  defp luhn_sum(digits) do
+    Enum.zip_with(
+      [
+        digits |> string_list_to_int(),
+        Stream.cycle([2, 1]) |> Enum.take(digits |> String.length())
+      ],
+      fn [x, y] -> x * y end
+    )
+    |> Enum.map(&Integer.to_string/1)
+    |> Enum.join("")
+    |> string_list_to_int()
+    |> Enum.sum()
   end
 
-  defp digit_to_add(i, digit) do
-    if rem(i, 2) == 0 do
-      (digit * 2)
-      |> double_digit
-    else
-      digit
-    end
-  end
-
-  defp double_digit(digit) do
-    if digit > 9 do
-      digit - 9
-    else
-      digit
-    end
+  defp string_list_to_int(list) do
+    list
+    |> String.split("", trim: true)
+    |> Enum.map(&String.to_integer/1)
   end
 end
