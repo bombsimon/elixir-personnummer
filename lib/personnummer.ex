@@ -46,8 +46,14 @@ defmodule Personnummer do
       iex> {_, p} = Personnummer.new("9001011234")
       iex> Personnummer.format(p, true)
       "19900101-1234"
+      iex> Personnummer.format(p, false)
+      "900101-1234"
 
   """
+  def format(pnr, false) do
+    format(pnr)
+  end
+
   def format(pnr, true) do
     day =
       if pnr.coordination do
