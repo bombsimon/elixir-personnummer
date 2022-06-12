@@ -5,6 +5,22 @@ defmodule Personnummer do
 
   defstruct [:date, :serial, :control, :separator, :coordination]
 
+  @doc """
+  Construct a new Personnummer struct.
+
+  # Examples
+
+      iex> Personnummer.new("19900101-0017")
+      {:ok,
+       %Personnummer{
+         control: 7,
+         coordination: false,
+         date: ~D[1990-01-01],
+         separator: "-",
+         serial: 1
+       }}
+
+  """
   def new(pnr_string) do
     matches =
       Regex.run(~r/^(\d{2}){0,1}(\d{2})(\d{2})(\d{2})([-+]{0,1})(\d{3})(\d{0,1})$/, pnr_string)
@@ -84,10 +100,25 @@ defmodule Personnummer do
   Checks if the personal identity number is valid. Requres a valid date and a
   valid last four digits.
 
-  ## Examples
-
-      iex> {_, p} = %Personnummer{}
+  ## Examples (for Persomnnummer type)
+      iex> p = %Personnummer{}
       iex> Personnummer.valid?(p)
+      false
+      iex> {_, p} = Personnummer.new("19900101-0017")
+      iex> Personnummer.valid?(p)
+      true
+      iex> {_, p} = Personnummer.new("19900101-0018")
+      iex> Personnummer.valid?(p)
+      false
+
+  ## Examples (for string)
+      iex> Personnummer.valid?("19900101-0017")
+      true
+      iex> Personnummer.valid?("19900101-0019")
+      false
+      iex> Personnummer.valid?("bogus")
+      false
+      iex> Personnummer.valid?("903030-0017")
       false
 
   """
@@ -95,20 +126,6 @@ defmodule Personnummer do
     false
   end
 
-  @doc """
-  Checks if the personal identity number is valid. Requres a valid date and a
-  valid last four digits.
-
-  ## Examples
-
-      iex> {_, p1} = Personnummer.new("19900101-0017")
-      iex> {_, p2} = Personnummer.new("19900101-0018")
-      iex> Personnummer.valid?(p1)
-      true
-      iex> Personnummer.valid?(p2)
-      false
-
-  """
   def valid?(pnr = %Personnummer{}) do
     short_date =
       Personnummer.format(pnr)
@@ -122,21 +139,6 @@ defmodule Personnummer do
     pnr.serial > 0 && luhn("#{short_date}#{serial}") == pnr.control
   end
 
-  @doc """
-  Quick validation function to just validate a personal identity number from a
-  string without preserving the struct with the personal identity number data.
-
-  ## Examples
-    iex> Personnummer.valid?("19900101-0017")
-    true
-    iex> Personnummer.valid?("19900101-0019")
-    false
-    iex> Personnummer.valid?("bogus")
-    false
-    iex> Personnummer.valid?("903030-0017")
-    false
-
-  """
   def valid?(pnr_str) when is_binary(pnr_str) do
     case Personnummer.new(pnr_str) do
       {:error, nil} -> false
