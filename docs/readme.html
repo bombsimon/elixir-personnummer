@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.28.4">
+    <meta name="project" content="Personnummer v3.0.1">
+
+    <title>Personnummer — Personnummer v3.0.1</title>
+    <link rel="stylesheet" href="dist/elixir-b6f1ed5df9b1d42a7309.css" />
+
+    <script src="dist/sidebar_items-d00e61138a.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-bd1cb213813bf4825aa2.js"></script>
+
+
+  </head>
+  <body data-type="extras">
+    <script>
+
+      try {
+        var settings = JSON.parse(localStorage.getItem('ex_doc:settings') || '{}');
+
+        if (settings.theme === 'dark' ||
+           ((settings.theme === 'system' || settings.theme == null) &&
+             window.matchMedia('(prefers-color-scheme: dark)').matches)
+           ) {
+          document.body.classList.add('dark')
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+
+<section class="sidebar">
+  <button class="sidebar-button sidebar-toggle" aria-label="toggle sidebar">
+    <i class="ri-menu-line ri-lg" title="Collapse/expand sidebar"></i>
+  </button>
+
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <i class="ri-search-2-line" aria-hidden="true" title="Submit search"></i>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <i class="ri-close-line ri-lg" aria-hidden="true" title="Cancel search"></i>
+    </button>
+    <label class="search-label">
+      <p class="sr-only">Search</p>
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+
+    <div class="sidebar-projectDetails">
+      <a href="https://bombsimon.github.io/elixir-personnummer" class="sidebar-projectName" translate="no">
+Personnummer
+      </a>
+      <strong class="sidebar-projectVersion" translate="no">
+        v3.0.1
+      </strong>
+    </div>
+    <ul class="sidebar-listNav">
+      <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+        <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+    </ul>
+  </div>
+
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <output role="status" id="toast"></output>
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+<button class="settings display-settings">
+  <i class="ri-settings-3-line"></i>
+  <span class="sr-only">Settings</span>
+</button>
+
+
+    <a href="https://github.com/bombsimon/elixir-personnummer/blob/main/README.md#L1" title="View Source" class="view-source" rel="help">
+      <i class="ri-code-s-slash-line" aria-hidden="true"></i>
+      <span class="sr-only">View Source</span>
+    </a>
+
+  <span>Personnummer</span>
+</h1>
+
+<p>Validate Swedish <a href="https://en.wikipedia.org/wiki/Personal_identity_number_(Sweden)">personal identity
+numbers</a> with
+<a href="https://elixir-lang.org/">Elixir</a>.</p><h2 id="usage" class="section-heading">
+  <a href="#usage" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">usage</p>
+  </a>
+  Usage
+</h2>
+<h3 id="just-validation" class="section-heading">
+  <a href="#just-validation" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">just-validation</p>
+  </a>
+  Just validation
+</h3>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex(1)&gt; </span><span class="nc">Personnummer</span><span class="o">.</span><span class="n">valid?</span><span class="p" data-group-id="0193121284-1">(</span><span class="s">&quot;19900101-0017&quot;</span><span class="p" data-group-id="0193121284-1">)</span><span class="w">
+</span><span class="no">true</span></code></pre><h3 id="validation-and-additional-information" class="section-heading">
+  <a href="#validation-and-additional-information" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">validation-and-additional-information</p>
+  </a>
+  Validation and additional information
+</h3>
+<pre><code class="makeup elixir" translate="no"><span class="gp unselectable">iex(1)&gt; </span><span class="p" data-group-id="5936410538-1">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w"> </span><span class="n">pnr</span><span class="p" data-group-id="5936410538-1">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nc">Personnummer</span><span class="o">.</span><span class="n">new</span><span class="p" data-group-id="5936410538-2">(</span><span class="s">&quot;19900101-0017&quot;</span><span class="p" data-group-id="5936410538-2">)</span><span class="w">
+</span><span class="p" data-group-id="5936410538-3">{</span><span class="ss">:ok</span><span class="p">,</span><span class="w">
+ </span><span class="p" data-group-id="5936410538-4">%</span><span class="nc" data-group-id="5936410538-4">Personnummer</span><span class="p" data-group-id="5936410538-4">{</span><span class="w">
+   </span><span class="ss">control</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+   </span><span class="ss">coordination</span><span class="p">:</span><span class="w"> </span><span class="no">false</span><span class="p">,</span><span class="w">
+   </span><span class="ss">date</span><span class="p">:</span><span class="w"> </span><span class="ld">~D[1990-01-01]</span><span class="p">,</span><span class="w">
+   </span><span class="ss">separator</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;-&quot;</span><span class="p">,</span><span class="w">
+   </span><span class="ss">serial</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+ </span><span class="p" data-group-id="5936410538-4">}</span><span class="p" data-group-id="5936410538-3">}</span><span class="w">
+</span><span class="gp unselectable">iex(2)&gt; </span><span class="nc">Personnummer</span><span class="o">.</span><span class="n">valid?</span><span class="p" data-group-id="5936410538-5">(</span><span class="n">pnr</span><span class="p" data-group-id="5936410538-5">)</span><span class="w">
+</span><span class="no">true</span><span class="w">
+</span><span class="gp unselectable">iex(3)&gt; </span><span class="n">gender</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nc">Personnummer</span><span class="o">.</span><span class="n">is_female?</span><span class="p" data-group-id="5936410538-6">(</span><span class="n">pnr</span><span class="p" data-group-id="5936410538-6">)</span><span class="w"> </span><span class="k" data-group-id="5936410538-7">do</span><span class="w"> </span><span class="s">&quot;female&quot;</span><span class="w"> </span><span class="k" data-group-id="5936410538-7">else</span><span class="w"> </span><span class="s">&quot;male&quot;</span><span class="w"> </span><span class="k" data-group-id="5936410538-7">end</span><span class="w">
+</span><span class="s">&quot;male&quot;</span><span class="w">
+</span><span class="gp unselectable">iex(4)&gt; </span><span class="nc">IO</span><span class="o">.</span><span class="n">puts</span><span class="w"> </span><span class="s">&quot;The person with personal identity number </span><span class="si" data-group-id="5936410538-8">#{</span><span class="nc">Personnummer</span><span class="o">.</span><span class="n">format</span><span class="p" data-group-id="5936410538-9">(</span><span class="n">pnr</span><span class="p" data-group-id="5936410538-9">)</span><span class="si" data-group-id="5936410538-8">}</span><span class="s"> is a </span><span class="si" data-group-id="5936410538-10">#{</span><span class="n">gender</span><span class="si" data-group-id="5936410538-10">}</span><span class="s"> of age </span><span class="si" data-group-id="5936410538-11">#{</span><span class="nc">Personnummer</span><span class="o">.</span><span class="n">get_age</span><span class="p" data-group-id="5936410538-12">(</span><span class="n">pnr</span><span class="p" data-group-id="5936410538-12">)</span><span class="si" data-group-id="5936410538-11">}</span><span class="s">&quot;</span><span class="w">
+</span><span class="nc">The</span><span class="w"> </span><span class="n">person</span><span class="w"> </span><span class="k">with</span><span class="w"> </span><span class="n">personal</span><span class="w"> </span><span class="n">identity</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="mi">900101</span><span class="o">-</span><span class="mi">0017</span><span class="w"> </span><span class="n">is</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">male</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="mi">30</span><span class="w">
+</span><span class="ss">:ok</span></code></pre><h2 id="installation" class="section-heading">
+  <a href="#installation" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">installation</p>
+  </a>
+  Installation
+</h2>
+<p>If <a href="https://hex.pm/docs/publish">available in Hex</a>, the package can be installed
+by adding <code class="inline">personnummer</code> to your list of dependencies in <code class="inline">mix.exs</code>:</p><pre><code class="makeup elixir" translate="no"><span class="kd">def</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="6357077937-1">do</span><span class="w">
+  </span><span class="p" data-group-id="6357077937-2">[</span><span class="w">
+    </span><span class="p" data-group-id="6357077937-3">{</span><span class="ss">:personnummer</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 3.0.0&quot;</span><span class="p" data-group-id="6357077937-3">}</span><span class="w">
+  </span><span class="p" data-group-id="6357077937-2">]</span><span class="w">
+</span><span class="k" data-group-id="6357077937-1">end</span></code></pre><p>Documentation can be generated with <a href="https://github.com/elixir-lang/ex_doc">ExDoc</a>
+and published on <a href="https://hexdocs.pm">HexDocs</a>. Once published, the docs can
+be found at <a href="https://hexdocs.pm/personnummer">https://hexdocs.pm/personnummer</a>.</p><h2 id="testing" class="section-heading">
+  <a href="#testing" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">testing</p>
+  </a>
+  Testing
+</h2>
+<p>Use <a href="https://hexdocs.pm/mix/Mix.Tasks.Test.html"><code class="inline">mix test</code></a> to run doctests and unit tests.</p><h2 id="documentation" class="section-heading">
+  <a href="#documentation" class="hover-link"><i class="ri-link-m" aria-hidden="true"></i>
+  <p class="sr-only">documentation</p>
+  </a>
+  Documentation
+</h2>
+<p>Documentation can be found at
+<a href="https://bombsimon.github.io/elixir-personnummer/">bombsimon.github.io/elixir-personnummer</a>.
+To generate new documentation, run</p><pre><code class="makeup sh" translate="no"><span class="">mix docs -f html -o docs
+</span></code></pre>
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="api-reference.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+API Reference
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+  </div>
+</div>
+
+      <footer class="footer">
+
+        <p>
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener" translate="no">ExDoc</a> (v0.28.4) for the
+
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank" translate="no">Elixir programming language</a>
+
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

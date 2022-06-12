@@ -4,10 +4,17 @@ defmodule Personnummer.MixProject do
   def project do
     [
       app: :personnummer,
-      version: "3.0.0",
-      elixir: "~> 1.9",
+      version: "3.0.1",
+      elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      name: "Personnummer",
+      source_url: "https://github.com/bombsimon/elixir-personnummer",
+      homepage_url: "https://bombsimon.github.io/elixir-personnummer",
+      docs: [
+        main: "Personnummer",
+        extras: ["README.md"]
+      ]
     ]
   end
 

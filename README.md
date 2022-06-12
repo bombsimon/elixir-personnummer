@@ -54,3 +54,13 @@ be found at [https://hexdocs.pm/personnummer](https://hexdocs.pm/personnummer).
 ## Testing
 
 Use `mix test` to run doctests and unit tests.
+
+## Documentation
+
+Documentation can be found at
+[bombsimon.github.io/elixir-personnummer](https://bombsimon.github.io/elixir-personnummer/).
+To generate new documentation, run
+
+```sh
+mix docs -f html -o docs
+```
